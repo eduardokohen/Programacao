@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 
 int main (){
 
@@ -8,11 +10,39 @@ int main (){
     printf("*Bem vindo ao nosso jogo de adivinhação!*\n");
     printf("*****************************************\n" );
 
-    int numero_secreto = 42;
+    int segundos = time(0);
+    srand(segundos);
+
+    int numerogrande = rand();
+    
+    int numerosecreto = numerogrande%100;
     int chute = 0;
     int tentativas = 1;
+    double pontos = 1000.0;
 
-    while(1){
+    int acertou = 0;
+
+    int nivel;
+    printf("Qual o nível de dificuldade?\n");
+    printf("(1) Fácil (2) Médio (3) Difícil\n\n");
+    printf("Escolha: ");
+    scanf("%d", &nivel);
+
+    int numerodetentativas;
+
+    switch(nivel){
+    	case 1:
+    		numerodetentativas = 20;
+    		break;
+    	case 2:
+    		numerodetentativas = 15;
+    		break;
+    	default: 
+    		numerodetentativas = 6;
+    		break;
+    }
+
+    for(int i =1; i <= numerodetentativas; i++){
 
     	printf("Tentativa %d:\n", tentativas);
 
@@ -26,15 +56,12 @@ int main (){
 	    	continue;
 	    }
 
-	    int acertou = (chute == numero_secreto);
-	   	int maior = chute > numero_secreto;
+	    acertou = (chute == numerosecreto);
+	   	int maior = chute > numerosecreto;
 
 
 	    if (acertou){
 
-	    	printf("Parabéns! Você acertou!\n");
-	    	printf("Você acertou em %d tentativas!\n", tentativas);
-	    	printf("Jogue de novo, você é um bom jogador!\n");	
 	    	break;
 	    }
 	    else if (maior){
@@ -45,10 +72,22 @@ int main (){
 	    	printf("Seu chute foi menor que o número secreto\n");
 	    	}
 
- 	    tentativas = tentativas +1;
+ 	    tentativas ++;
+
+ 	    double pontosperdidos = (abs)(chute - numerosecreto)/(double)2; 	    
+ 	    pontos = pontos - pontosperdidos;
 
 	    }
 
-	printf("Fim de Jogo!\n");
+	    printf("Fim de Jogo!\n");
+
+	    if(acertou){
+	    	printf("Parabéns! Você ganhou!\n");
+	    	printf("Você acertou em %d tentativas!\n", tentativas);
+	    	printf("Total de pontos: %.2f.\n", pontos);
+	    } else{
+	    	printf("Você perdeu! Tente de novo!\n");
+	    }
+
     return 0;
 }
