@@ -1,0 +1,17 @@
+RELATÓRIO DE VENDAS - JANEIRO 2024
+=====================================
+
+Este arquivo contém informações sobre as vendas realizadas no mês de janeiro de 2024.
+
+Total de produtos vendidos: 133 unidades
+Valor total das vendas: R$ 89.500,00
+
+Produtos mais vendidos:
+- RAM: 18 unidades
+- Headset: 25 unidades
+- SSD: 30 unidades
+
+Observações:
+- Todas as vendas foram realizadas com sucesso
+- Nenhum produto apresentou problemas
+- Clientes satisfeitos com os produtos
